@@ -1,11 +1,9 @@
 import verificarSimbolosRomanos from '../src/verificarSimbolosRomanos.js';
 
-// Helper para convertir string a array
 const strToArray = (str) => Array.from(str);
 
 describe('verificarSimbolosRomanos', () => {
 
-  // --- Casos de Éxito (No deben lanzar error) ---
   describe('Casos de éxito (repeticiones válidas)', () => {
     test('no debe lanzar error para números válidos', () => {
       expect(() => {
@@ -38,10 +36,8 @@ describe('verificarSimbolosRomanos', () => {
       });
   });
 
-  // --- Casos de Error (Repeticiones Inválidas) ---
   describe('Casos de error (lanzar Error por repetición)', () => {
     
-    // Regla V, L, D
     test('debe lanzar un error por "VV"', () => {
       expect(() => {
         verificarSimbolosRomanos(strToArray("VV"));
@@ -66,7 +62,6 @@ describe('verificarSimbolosRomanos', () => {
         }).toThrow("Numero ingresado incorrecto");
       });
 
-    // Regla I, X, C, M
     test('debe lanzar un error por "IIII"', () => {
       expect(() => {
         verificarSimbolosRomanos(strToArray("IIII"));

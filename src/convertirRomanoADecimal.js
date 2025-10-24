@@ -1,4 +1,4 @@
-function convertirARomano(array){
+function convertirRomanoADecimal(array){
     let total = 0;
     let previo = 0;
     const mapValores = {
@@ -45,4 +45,4 @@ function convertirARomano(array){
      return total
 }
 
-export default convertirARomano
+export default convertirRomanoADecimal

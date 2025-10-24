@@ -5,7 +5,7 @@ function verificarEntradaRomanos(string){
 //Convertimos string en array:
 const arrayRomano = Array.from(string);
     arrayRomano.forEach(l => {
-        if(!romanos.includes(l)) throw new Error("Numero ingresado incorrecto")
+        if(!romanos.includes(l)) throw new Error("Numero ingresado incorrecto, contiene simbolos erroneos")
     })
 return arrayRomano
 }

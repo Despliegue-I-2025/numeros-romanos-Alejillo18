@@ -2,7 +2,6 @@ import verificarEntradaRomanos from '../src/verificarEntradaRomanos.js';
 
 describe('verificarEntradaRomanos', () => {
 
-  // --- Casos de Éxito ---
   describe('Casos de éxito', () => {
     test('debe devolver un array de caracteres para un string válido', () => {
       const input = "MCMXCIV";
@@ -15,7 +14,6 @@ describe('verificarEntradaRomanos', () => {
     });
   });
 
-  // --- Casos de Error (Inputs Inválidos) ---
   describe('Casos de error (lanzar Error)', () => {
     
     test('debe lanzar un error si el string está vacío', () => {
@@ -54,28 +52,27 @@ describe('verificarEntradaRomanos', () => {
         }).toThrow("Numero ingresado incorrecto");
       });
 
-    // --- Casos de Error (Contenido Inválido) ---
     test('debe lanzar un error si contiene caracteres inválidos', () => {
       expect(() => {
-        verificarEntradaRomanos("MCMA"); // 'A' es inválido
+        verificarEntradaRomanos("MCMA");
       }).toThrow("Numero ingresado incorrecto");
     });
 
     test('debe lanzar un error si contiene minúsculas', () => {
         expect(() => {
-          verificarEntradaRomanos("mm"); // 'm' es inválido
+          verificarEntradaRomanos("mm");
         }).toThrow("Numero ingresado incorrecto");
       });
 
     test('debe lanzar un error si contiene números (como string)', () => {
       expect(() => {
-        verificarEntradaRomanos("MCM10"); // '1' y '0' son inválidos
+        verificarEntradaRomanos("MCM10");
       }).toThrow("Numero ingresado incorrecto");
     });
 
     test('debe lanzar un error si contiene espacios', () => {
       expect(() => {
-        verificarEntradaRomanos("M CM"); // ' ' es inválido
+        verificarEntradaRomanos("M CM");
       }).toThrow("Numero ingresado incorrecto");
     });
   });

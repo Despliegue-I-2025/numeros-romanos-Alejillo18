@@ -1,9 +1,9 @@
 import verificarSimbolosRomanos from "./verificarSimbolosRomanos.js"
-import convertirARomano from "./convertirARomano.js"
+import convertirRomanoADecimal from "./convertirRomanoADecimal.js"
 function convertirEntradaRomano(array){
     try{
         verificarSimbolosRomanos(array)
-        const NROMANO = convertirARomano(array)
+        const NROMANO = convertirRomanoADecimal(array)
         return NROMANO;
     }
     catch(error)
