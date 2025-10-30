@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json())
 
 
-app.get("/romano/:Rnumber",(req,res)=>{
+app.get("/r2a/:Rnumber",(req,res)=>{
     try{
         const RNUMBER = req.params.Rnumber;
         const arrayRomano = verificarEntradaRomanos(RNUMBER);
@@ -27,7 +27,7 @@ app.get("/romano/:Rnumber",(req,res)=>{
 })
 
 
-app.get("/decimal/:Dnumber", (req,res)=>{
+app.get("/a2r/:Dnumber", (req,res)=>{
     try{
         const DNUMBER = req.params.Dnumber;
         const NUMEROD = verificarEntradaDecimal(DNUMBER)
