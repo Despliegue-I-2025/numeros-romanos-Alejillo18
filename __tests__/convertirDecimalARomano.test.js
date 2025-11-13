@@ -10,6 +10,10 @@ describe('convertirDecimalARomano', () => {
     expect(convertirDecimalARomano(3)).toBe("III");
   });
 
+  test('debe convertir 58 a "LVIII"', () => {
+    expect(convertirDecimalARomano(58)).toBe("LVIII");
+  });
+
   test('debe convertir 15 a "XV"', () => {
     expect(convertirDecimalARomano(15)).toBe("XV");
   });
@@ -44,6 +48,10 @@ describe('convertirDecimalARomano', () => {
 
   test('debe convertir 444 a "CDXLIV"', () => {
     expect(convertirDecimalARomano(444)).toBe("CDXLIV");
+  });
+  
+  test('debe convertir 888 a "DCCCLXXXVIII"', () => {
+    expect(convertirDecimalARomano(888)).toBe("DCCCLXXXVIII");
   });
 
   test('debe convertir 1994 a "MCMXCIV"', () => {

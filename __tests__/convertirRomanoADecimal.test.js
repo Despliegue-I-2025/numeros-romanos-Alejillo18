@@ -23,6 +23,8 @@ describe('convertirRomanoADecimal', () => {
     test('debe convertir números complejos (válidos)', () => {
       expect(convertirRomanoADecimal(strToArray("MCMXCIV"))).toBe(1994);
       expect(convertirRomanoADecimal(strToArray("CDXLIV"))).toBe(444);
+      expect(convertirRomanoADecimal(strToArray("MMDCCCXLIX"))).toBe(2849);
+      expect(convertirRomanoADecimal(strToArray("MMMCMXCIX"))).toBe(3999);
     });
   });
 
@@ -74,6 +76,13 @@ describe('convertirRomanoADecimal', () => {
         expect(() => {
           convertirRomanoADecimal(strToArray("XM"));
         }).toThrow("Numero ingresado incorrecto: 'X' solo puede restar a 'L' y 'C'.");
+    });
+    
+    test('debe lanzar error si el símbolo que resta está a más de un orden de magnitud', () => {
+        // La resta de I en IX es válida, pero I no puede restar a L (50) en I L.
+        expect(() => {
+          convertirRomanoADecimal(strToArray("IC"));
+        }).toThrow("Numero ingresado incorrecto: 'I' solo puede restar a 'V' y 'X'.");
     });
 
   });

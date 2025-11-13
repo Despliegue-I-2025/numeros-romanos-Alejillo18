@@ -1,14 +1,19 @@
 import verificarSimbolosRomanos from "./verificarSimbolosRomanos.js"
 import convertirRomanoADecimal from "./convertirRomanoADecimal.js"
-function convertirEntradaRomano(array){
-    try{
-        verificarSimbolosRomanos(array)
-        const NROMANO = convertirRomanoADecimal(array)
+import { BadRequestError } from "./apiError.js";
+import convertirDecimalARomano from "./convertirDecimalARomano.js";
+
+function convertirEntradaRomano(array,path){
+        verificarSimbolosRomanos(array,path)
+        const NROMANO = convertirRomanoADecimal(array,path)
+        const formaCanonica = convertirDecimalARomano(NROMANO,path)
+        const entradaOriginal = array.join("")
+        if(formaCanonica !== entradaOriginal){
+                throw new BadRequestError(`El número romano no es canónico (mal formado). La forma correcta es: ${formaCanonica}`,path)
+        }
         return NROMANO;
-    }
-    catch(error)
-    {
-        throw new Error(`Error: ${error.message}`)
-    }
+
+       
+        
 }
 export default convertirEntradaRomano

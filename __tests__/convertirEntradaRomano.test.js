@@ -17,13 +17,13 @@ describe('convertirEntradaRomano (Orquestador)', () => {
   test('debe llamar a verificar y convertir, y devolver el número final', () => {
     const arrayValido = strToArray("MCMXCIV");
     
+    verificarSimbolosRomanos.mockImplementation(() => {}); 
     convertirRomanoADecimal.mockReturnValue(1994);
     
     const resultado = convertirEntradaRomano(arrayValido);
 
-    expect(verificarSimbolosRomanos).toHaveBeenCalledWith(arrayValido);
-    expect(verificarSimbolosRomanos).toHaveBeenCalledWith(arrayValido);
-    expect(convertirRomanoADecimal).toHaveBeenCalledWith(arrayValido);
+    expect(verificarSimbolosRomanos).toHaveBeenCalledWith(arrayValido, undefined);
+    expect(convertirRomanoADecimal).toHaveBeenCalledWith(arrayValido, undefined);
     expect(resultado).toBe(1994);
   });
 
@@ -37,7 +37,7 @@ describe('convertirEntradaRomano (Orquestador)', () => {
 
     expect(() => {
       convertirEntradaRomano(arrayInvalido);
-    }).toThrow("Error: Numero ingresado incorrecto");
+    }).toThrow("Numero ingresado incorrecto");
 
     expect(convertirRomanoADecimal).not.toHaveBeenCalled();
   });

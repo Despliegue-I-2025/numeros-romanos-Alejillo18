@@ -1,4 +1,5 @@
-function convertirDecimalARomano(numeroD){
+
+function convertirDecimalARomano(numeroD,path){
     const mapValores = [
         { simbolo: "M",  valor: 1000 },
         { simbolo: "CM", valor: 900 },
@@ -22,7 +23,8 @@ function convertirDecimalARomano(numeroD){
             numeroD -= valor;
         }
       }
-      return resultado;
+
+      return resultado
 }
 
 export default convertirDecimalARomano

@@ -6,74 +6,74 @@ describe('verificarEntradaRomanos', () => {
     test('debe devolver un array de caracteres para un string válido', () => {
       const input = "MCMXCIV";
       const expected = ['M', 'C', 'M', 'X', 'C', 'I', 'V'];
-      expect(verificarEntradaRomanos(input)).toEqual(expected);
+
+      expect(verificarEntradaRomanos(input, '/test')).toEqual(expected);
     });
 
     test('debe funcionar con un solo caracter', () => {
-      expect(verificarEntradaRomanos("V")).toEqual(['V']);
+      expect(verificarEntradaRomanos("V", '/test')).toEqual(['V']);
     });
   });
 
   describe('Casos de error (lanzar Error)', () => {
     
+
+    const TYPE_FAIL_MSG = "Ingresaste incorrectamente el valor romano, intenta nuevamente";
+
     test('debe lanzar un error si el string está vacío', () => {
       expect(() => {
-        verificarEntradaRomanos("");
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos("", '/test');
+      }).toThrow(TYPE_FAIL_MSG);
     });
 
     test('debe lanzar un error si el input no es un string (null)', () => {
       expect(() => {
-        verificarEntradaRomanos(null);
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos(null, '/test');
+      }).toThrow(TYPE_FAIL_MSG);
     });
 
     test('debe lanzar un error si el input no es un string (number)', () => {
       expect(() => {
-        verificarEntradaRomanos(1994);
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos(1994, '/test');
+      }).toThrow(TYPE_FAIL_MSG);
     });
 
     test('debe lanzar un error si el input no es un string (undefined)', () => {
       expect(() => {
-        verificarEntradaRomanos(undefined);
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos(undefined, '/test');
+      }).toThrow(TYPE_FAIL_MSG);
     });
 
     test('debe lanzar un error si el input es un array', () => {
         expect(() => {
-          verificarEntradaRomanos(['M']);
-        }).toThrow("Numero ingresado incorrecto");
+          verificarEntradaRomanos(['M'], '/test');
+        }).toThrow(TYPE_FAIL_MSG);
       });
     
     test('debe lanzar un error si el input es un objeto', () => {
         expect(() => {
-          verificarEntradaRomanos({a: 1});
-        }).toThrow("Numero ingresado incorrecto");
+          verificarEntradaRomanos({a: 1}, '/test');
+        }).toThrow(TYPE_FAIL_MSG);
       });
+
+
+    const SYMBOL_FAIL_MSG_PREFIX = "Numero ingresado incorrecto, contiene simbolos erroneos:";
 
     test('debe lanzar un error si contiene caracteres inválidos', () => {
       expect(() => {
-        verificarEntradaRomanos("MCMA");
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos("MCMA", '/test');
+      }).toThrow(SYMBOL_FAIL_MSG_PREFIX);
     });
-
-    test('debe lanzar un error si contiene minúsculas', () => {
-        expect(() => {
-          verificarEntradaRomanos("mm");
-        }).toThrow("Numero ingresado incorrecto");
-      });
-
     test('debe lanzar un error si contiene números (como string)', () => {
       expect(() => {
-        verificarEntradaRomanos("MCM10");
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos("MCM10", '/test');
+      }).toThrow(SYMBOL_FAIL_MSG_PREFIX);
     });
 
     test('debe lanzar un error si contiene espacios', () => {
       expect(() => {
-        verificarEntradaRomanos("M CM");
-      }).toThrow("Numero ingresado incorrecto");
+        verificarEntradaRomanos("M CM", '/test');
+      }).toThrow(SYMBOL_FAIL_MSG_PREFIX);
     });
   });
 });

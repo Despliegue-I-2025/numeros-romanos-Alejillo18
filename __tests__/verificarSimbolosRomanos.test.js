@@ -91,5 +91,11 @@ describe('verificarSimbolosRomanos', () => {
           verificarSimbolosRomanos(strToArray("CXXXX"));
         }).toThrow("Numero ingresado incorrecto");
       });
+    
+    test('debe lanzar un error por "IIV" (regla de no repetición de V después de sustracción)', () => {
+        expect(() => {
+          verificarSimbolosRomanos(strToArray("IVV"));
+        }).toThrow("Numero ingresado incorrecto");
+    });
   });
 });

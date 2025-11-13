@@ -1,4 +1,7 @@
-function convertirRomanoADecimal(array){
+import { BadRequestError } from "./apiError.js";
+
+
+function convertirRomanoADecimal(array,path){
     let total = 0;
     let previo = 0;
     const mapValores = {
@@ -20,29 +23,29 @@ function convertirRomanoADecimal(array){
             switch (actual) {
                 case 1:
                     if (previo !== 5 && previo !== 10) {
-                        throw new Error("Numero ingresado incorrecto: 'I' solo puede restar a 'V' y 'X'.");
+                        throw new BadRequestError("Numero ingresado incorrecto: 'I' solo puede restar a 'V' y 'X'.", path);
                     }
                     break;
                 case 10:
                     if (previo !== 50 && previo !== 100) {
-                        throw new Error("Numero ingresado incorrecto: 'X' solo puede restar a 'L' y 'C'.");
+                        throw new BadRequestError("Numero ingresado incorrecto: 'X' solo puede restar a 'L' y 'C'.", path);
                     }
                     break;
                 case 100:
                     if (previo !== 500 && previo !== 1000) {
-                        throw new Error("Numero ingresado incorrecto: 'C' solo puede restar a 'D' y 'M'.");
+                        throw new BadRequestError("Numero ingresado incorrecto: 'C' solo puede restar a 'D' y 'M'.",path);
                     }
                     break;
                 case 5:
                 case 50:
                 case 500:
-                    throw new Error(`Numero ingresado incorrecto: '${array[i]}' (V, L, D) no pueden restar.`);
+                    throw new BadRequestError(`Numero ingresado incorrecto: '${array[i]}' (V, L, D) no pueden restar.`,path);
             }
             total -= actual;
         }
         previo = actual
     }
-     return total
+    
+    return total    
 }
-
 export default convertirRomanoADecimal
