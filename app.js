@@ -5,7 +5,7 @@ import convertirDecimalARomano from "./src/convertirDecimalARomano.js";
 import verificarEntradaDecimal from "./src/verificarEntradaDecimal.js"
 import errorMiddleware from "./src/errorMiddleware.js";
 import { BadRequestError } from "./src/apiError.js";
-
+import cors from "cors"
 
 const PORT = 8080;
 
