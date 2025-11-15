@@ -4,6 +4,7 @@ import verificarEntradaRomanos from "./src/verificarEntradaRomanos.js";
 import convertirDecimalARomano from "./src/convertirDecimalARomano.js";
 import verificarEntradaDecimal from "./src/verificarEntradaDecimal.js"
 import errorMiddleware from "./src/errorMiddleware.js";
+import { BadRequestError } from "./src/apiError.js";
 
 
 const PORT = 8080;
@@ -14,10 +15,11 @@ app.use(express.json())
 
 
 
-app.get("/r2a/:Rnumber",(req,res,next)=>{
+app.get("/r2a",(req,res,next)=>{
     try{
         const path = req.originalUrl;
-        const RNUMBER = req.params.Rnumber;
+        const RNUMBER = req.query.roman;
+        if(!RNUMBER) throw new BadRequestError("Se necesita el parametro roman, por ejemplo GET/r2a?roman=IV",path)
         const arrayRomano = verificarEntradaRomanos(RNUMBER, path);
         const numero =  convertirEntradaRomanos(arrayRomano, path);
         res.status(200).json({state:true, numero, message: "Numero Convertido Correctamente"})
@@ -28,10 +30,11 @@ app.get("/r2a/:Rnumber",(req,res,next)=>{
 })
 
 
-app.get("/a2r/:Dnumber", (req,res,next)=>{
+app.get("/a2r", (req,res,next)=>{
     try{
         const path = req.originalUrl;
-        const DNUMBER = req.params.Dnumber;
+        const DNUMBER = req.query.arabig;
+        if(!DNUMBER) throw new BadRequestError("Se necesita el parametro arabig, por ejemplo GET/a2r?arabig=10",path)
         const NUMEROD = verificarEntradaDecimal(DNUMBER,path)
         const numero = convertirDecimalARomano(NUMEROD,path)
         res.status(200).json({state:true, numero, message: "Numero convertido Correctamente"})
