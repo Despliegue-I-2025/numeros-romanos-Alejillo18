@@ -22,7 +22,7 @@ app.get("/r2a",(req,res,next)=>{
         if(!RNUMBER) throw new BadRequestError("Se necesita el parametro roman, por ejemplo GET/r2a?roman=IV",path)
         const arrayRomano = verificarEntradaRomanos(RNUMBER, path);
         const numero =  convertirEntradaRomanos(arrayRomano, path);
-        res.status(200).json({state:true, numero, message: "Numero Convertido Correctamente"})
+        res.status(200).json({roman:numero})
     }
     catch(error){
         next(error)
@@ -33,11 +33,11 @@ app.get("/r2a",(req,res,next)=>{
 app.get("/a2r", (req,res,next)=>{
     try{
         const path = req.originalUrl;
-        const DNUMBER = req.query.arabig;
+        const DNUMBER = req.query.arabic;
         if(!DNUMBER) throw new BadRequestError("Se necesita el parametro arabig, por ejemplo GET/a2r?arabig=10",path)
         const NUMEROD = verificarEntradaDecimal(DNUMBER,path)
         const numero = convertirDecimalARomano(NUMEROD,path)
-        res.status(200).json({state:true, numero, message: "Numero convertido Correctamente"})
+        res.status(200).json({arabic : numero})
     }
     catch(error){
         next(error)
